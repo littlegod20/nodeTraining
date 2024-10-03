@@ -1,13 +1,7 @@
-const { readFile } = require("fs");
+const { createReadStream } = require("fs");
 
-const getText = (path) => {
-  return new Promise((resolve, reject) => {
-    readFile(path, "utf-8", (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        console.log(data);
-      }
-    });
-  });
-};
+const stream = createReadStream("./content/big.txt");
+
+stream.on("data", (result) => {
+  console.log(result);
+});
